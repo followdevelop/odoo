@@ -1,0 +1,68 @@
+docker run \
+      --name ${PWD##*/}-db \
+      -d \
+      -e POSTGRES_USER=odoo \
+      -e POSTGRES_PASSWORD=odoo \
+      -e POSTGRES_DB=postgres \
+      -v "$PWD/my-postgres.conf":/etc/postgresql/postgresql.conf \
+      -v "$PWD/db":/var/lib/postgresql/data \
+      postgres:11.1-alpine \
+      -c 'config_file=/etc/postgresql/postgresql.conf'
+#       -c 'shared_buffers=256MB'
+#       -c 'max_connections=200'
+docker run \
+      --link ${PWD##*/}-db:db \
+      --name ${PWD##*/} \
+      -d \
+      -p 8011:8069 \
+      -v "$PWD"/addons:/mnt/extra-addons \
+      odoo:11.0
+
+
+
+docker run -i --rm postgres:11.1-alpine cat /usr/local/share/postgresql/postgresql.conf.sample > my-postgres.conf
+
+tail -f postgres-logarchive.log
+
+v12log 1048  docker run --rm --link ${PWD##*/}-db:db -p 8087:8080 adminer
+
+  503  tail -f postgresql-2019-01-10_143914.log 
+
+  503  tail -f postgresql-2019-01-10_143914.log 
+
+
+#log_timezone = 'America/Bogota'
+#timezone = 'America/Bogota'
+log_timezone = 'ACT'
+timezone = 'ACT'
+
+
+    #------------------------------------------------------------------------------
+# CUSTOMIZED OPTIONS
+#------------------------------------------------------------------------------
+
+# Add settings for extensions here
+logging_collector = on		# modified
+log_directory = 'log'			# modified
+log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'	# modified
+log_statement = 'all'			# modified
+
+
+https://www.youtube.com/watch?v=nVmRY4Ri4CA
+
+
+
+
+
+
+
+permisos v12log
+addons tambien tiene permisos
+
+
+
+
+
+
+----------
+
